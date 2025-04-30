@@ -27,7 +27,8 @@ func NewInt[T intNums](x T) *big.Int {
 // If the input is a []byte, it is parsed using math/big.(*Int).SetBytes(x).
 //
 // If the [big.Int] is nil, a new one is created. Otherwise, the existing one is modified.
-// The function returns the modified [big.Int] on success. On failure, it returns nil.
+// The function returns the modified [big.Int] on success.
+// On failure, it returns nil and the state of the big.Int is undefined.
 func SetInt[T intNums](f *big.Int, x T) *big.Int {
 	if f == nil {
 		f = new(big.Int)
