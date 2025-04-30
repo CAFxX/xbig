@@ -105,7 +105,7 @@ func ExpModInt[T, U, V intNums](x T, y U, z V) *big.Int {
 func GCDInt[T, U intNums](x T, y U) *big.Int {
 	return new(big.Int).GCD(nil, nil, toInt(x), toInt(y))
 }
-func GCPPolyInt[T, U intNums](a T, b U) (*big.Int, *big.Int, *big.Int) {
+func GCDPolyInt[T, U intNums](a T, b U) (*big.Int, *big.Int, *big.Int) {
 	x, y := new(big.Int), new(big.Int)
 	return x, y, new(big.Int).GCD(x, y, toInt(a), toInt(b))
 }
