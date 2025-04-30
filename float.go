@@ -2,6 +2,8 @@ package xbig
 
 import (
 	"math/big"
+
+	"github.com/ALTree/bigfloat"
 )
 
 type floatNums interface {
@@ -97,4 +99,15 @@ func SetPrecFloat[T floatNums](x T, prec uint) *big.Float {
 }
 func SetMantExpFloat[T floatNums](x T, exp int) *big.Float {
 	return new(big.Float).SetMantExp(toFloat(x), exp)
+}
+
+// remove/reimplement these when/if math/big adds them
+func PowFloat[T, U floatNums](x T, y U) *big.Float {
+	return bigfloat.Pow(toFloat(x), toFloat(y))
+}
+func LogFloat[T floatNums](x T) *big.Float {
+	return bigfloat.Log(toFloat(x))
+}
+func ExpFloat[T floatNums](x T) *big.Float {
+	return bigfloat.Exp(toFloat(x))
 }
