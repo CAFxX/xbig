@@ -2,6 +2,7 @@ package xbig
 
 import (
 	"math/big"
+	"math/bits"
 
 	"github.com/ALTree/bigfloat"
 )
@@ -24,27 +25,27 @@ func SetFloat[T floatNums](f *big.Float, x T) *big.Float {
 	}
 	switch x := any(x).(type) {
 	case int:
-		return f.SetInt64(int64(x))
+		return f.SetInt64(int64(x)).SetPrec(bits.UintSize)
 	case int64:
 		return f.SetInt64(x)
 	case int32:
-		return f.SetInt64(int64(x))
+		return f.SetInt64(int64(x)).SetPrec(32)
 	case int16:
-		return f.SetInt64(int64(x))
+		return f.SetInt64(int64(x)).SetPrec(16)
 	case int8:
-		return f.SetInt64(int64(x))
+		return f.SetInt64(int64(x)).SetPrec(8)
 	case uint:
-		return f.SetUint64(uint64(x))
+		return f.SetUint64(uint64(x)).SetPrec(bits.UintSize)
 	case uint64:
 		return f.SetUint64(x)
 	case uint32:
-		return f.SetUint64(uint64(x))
+		return f.SetUint64(uint64(x)).SetPrec(32)
 	case uint16:
-		return f.SetUint64(uint64(x))
+		return f.SetUint64(uint64(x)).SetPrec(16)
 	case uint8:
-		return f.SetUint64(uint64(x))
+		return f.SetUint64(uint64(x)).SetPrec(8)
 	case float32:
-		return f.SetFloat64(float64(x))
+		return f.SetFloat64(float64(x)).SetPrec(32)
 	case float64:
 		return f.SetFloat64(x)
 	case *big.Float:
@@ -110,4 +111,8 @@ func LogFloat[T floatNums](x T) *big.Float {
 }
 func ExpFloat[T floatNums](x T) *big.Float {
 	return bigfloat.Exp(toFloat(x))
+}
+
+func FMAFloat[T, U, V floatNums](x T, y U, z V) *big.Float {
+	return NewFloat(FMARat(x, y, z)).SetPrec(max(toFloat(x).Prec(), toFloat(y).Prec(), toFloat(z).Prec()))
 }

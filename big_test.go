@@ -34,3 +34,12 @@ func TestComplex(t *testing.T) {
 func TestComplexStrings(t *testing.T) {
 	MulRat("5.7", ExpInt("2", "123"))
 }
+
+func TestFMAInt(t *testing.T) {
+	if CmpInt(FMAInt(1, 2, 3), 5) != 0 {
+		t.Error("FMAInt(1, 2, 3) != big.NewInt(5)")
+	}
+	if CmpInt(FMAInt(7, "3", -1), 20) != 0 {
+		t.Error("FMAInt(7, \"3\", -1) != big.NewInt(20)")
+	}
+}

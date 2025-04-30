@@ -153,3 +153,9 @@ func RshInt[T, U intNums](x T, y U) *big.Int {
 func RandInt[T intNums](r *rand.Rand, x T) *big.Int {
 	return new(big.Int).Rand(r, toInt(x))
 }
+
+func FMAInt[T, U, V intNums](x T, y U, z V) *big.Int {
+	rx := NewInt(x)
+	rx.Mul(rx, toInt(y))
+	return rx.Add(rx, toInt(z))
+}

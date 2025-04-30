@@ -79,9 +79,17 @@ func SetRatFrac[T, U ratNums](f *big.Rat, x T, y U) *big.Rat {
 }
 
 func isIntLike[T ratNums](x T) bool {
-	switch any(x).(type) {
+	switch x := any(x).(type) {
 	case *big.Int, int, int64, int32, int16, int8, uint, uint64, uint32, uint16, uint8:
 		return true
+	case *big.Rat:
+		return x.IsInt()
+	case *big.Float:
+		return x.IsInt()
+	case float64:
+		return x == float64(int64(x))
+	case float32:
+		return x == float32(int32(x))
 	}
 	return false
 }
@@ -110,6 +118,18 @@ func isIntLikeToInt[T ratNums](x T) *big.Int {
 		return toInt(x)
 	case uint8:
 		return toInt(x)
+	case *big.Rat:
+		return x.Num()
+	case *big.Float:
+		r, a := x.Int(nil)
+		if a != big.Exact {
+			panic("unreachable")
+		}
+		return r
+	case float64:
+		return toInt(int64(x))
+	case float32:
+		return toInt(int32(x))
 	}
 	return nil
 }
@@ -137,4 +157,10 @@ func InvRat[T ratNums](x T) *big.Rat {
 }
 func CmpRat[T, U ratNums](x T, y U) int {
 	return toRat(x).Cmp(toRat(y))
+}
+
+func FMARat[T, U, V ratNums](x T, y U, z V) *big.Rat {
+	rx := NewRat(x)
+	rx.Mul(rx, toRat(y))
+	return rx.Add(rx, toRat(z))
 }
