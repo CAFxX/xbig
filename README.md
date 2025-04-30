@@ -5,7 +5,10 @@
 The following are all valid ways to use `xbig`:
 
 ```go
-QuoFloat(MulFloat(math.PI, 2), ExpInt(2, 128)) // 2π/2¹²⁸
+// 2π/2¹²⁸
+QuoFloat(MulFloat(math.PI, 2), ExpInt(2, 128)) 
+
+// 4793825749327547329903472 * 9843728974589574362758946543567483265783432
 MulInt("4793825749327547329903472", "9843728974589574362758946543567483265783432")
 ```
 

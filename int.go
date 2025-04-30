@@ -14,10 +14,16 @@ type intNums interface {
 		~[]big.Word | ~[]byte
 }
 
+// NewInt creates a new big.Int from the given integer value.
+// The input is not modified.
 func NewInt[T intNums](x T) *big.Int {
 	return SetInt(new(big.Int), x)
 }
 
+// SetInt sets the value of the given big.Int to the given integer value.
+// The input value is not modified.
+// If the big.Int is nil, a new one is created. Otherwise, the existing one is modified.
+// The function returns the modified big.Int.
 func SetInt[T intNums](f *big.Int, x T) *big.Int {
 	if f == nil {
 		f = new(big.Int)
@@ -63,18 +69,32 @@ func toInt[T intNums](x T) *big.Int {
 	return NewInt(x)
 }
 
+// AddInt adds two integers and returns the result as a new big.Int.
+// The inputs are unmodified.
 func AddInt[T, U intNums](x T, y U) *big.Int {
 	return new(big.Int).Add(toInt(x), toInt(y))
 }
+
+// SubInt subtracts two integers and returns the result as a new big.Int.
+// The inputs are unmodified.
 func SubInt[T, U intNums](x T, y U) *big.Int {
 	return new(big.Int).Sub(toInt(x), toInt(y))
 }
+
+// MulInt multiplies two integers and returns the result as a new big.Int.
+// The inputs are unmodified.
 func MulInt[T, U intNums](x T, y U) *big.Int {
 	return new(big.Int).Mul(toInt(x), toInt(y))
 }
+
+// DivInt divides two integers and returns the result as a new big.Int.
+// The inputs are unmodified.
 func DivInt[T, U intNums](x T, y U) *big.Int {
 	return new(big.Int).Div(toInt(x), toInt(y))
 }
+
+// ModInt computes the modulus of two integers and returns the result as a new big.Int.
+// The inputs are unmodified.
 func ModInt[T, U intNums](x T, y U) *big.Int {
 	return new(big.Int).Mod(toInt(x), toInt(y))
 }
