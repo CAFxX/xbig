@@ -9,4 +9,4 @@ QuoFloat(MulFloat(math.PI, 2), ExpInt(2, 128)) // 2π/2¹²⁸
 MulInt("4793825749327547329903472", "9843728974589574362758946543567483265783432")
 ```
 
-This package is a WIP: APIs are not stable yet.
+This package is a WIP: APIs are not stable yet. [![Go Reference](https://pkg.go.dev/badge/github.com/CAFxX/xbig.svg)](https://pkg.go.dev/github.com/CAFxX/xbig)
