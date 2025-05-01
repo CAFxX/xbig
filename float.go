@@ -205,3 +205,9 @@ func ExpFloat[T floatNums](x T) *big.Float {
 func FMAFloat[T, U, V floatNums](x T, y U, z V) *big.Float {
 	return NewFloat(FMARat(x, y, z)).SetPrec(max(toFloat(x).Prec(), toFloat(y).Prec(), toFloat(z).Prec()))
 }
+
+// LogBaseFloat computes the logarithm of a in base b and returns the result as a new [big.Float].
+// The input values are not modified.
+func LogBaseFloat[T, U floatNums](a T, b U) *big.Float {
+	return QuoFloat(LogFloat(a), LogFloat(b))
+}

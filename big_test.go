@@ -3,6 +3,7 @@ package xbig
 import (
 	"math"
 	"math/big"
+	"strconv"
 	"testing"
 )
 
@@ -41,5 +42,47 @@ func TestFMAInt(t *testing.T) {
 	}
 	if CmpInt(FMAInt(7, "3", -1), 20) != 0 {
 		t.Error("FMAInt(7, \"3\", -1) != big.NewInt(20)")
+	}
+}
+
+func TestConstants(t *testing.T) {
+	if e, _ := E(64).Float64(); e != math.E {
+		t.Errorf("E: got %g, want %g", e, math.E)
+	}
+	if pi, _ := Pi(64).Float64(); pi != math.Pi {
+		t.Errorf("Pi: got %g, want %g", pi, math.Pi)
+	}
+	if phi, _ := Phi(64).Float64(); phi != math.Phi {
+		t.Errorf("Phi: got %g, want %g", phi, math.Phi)
+	}
+}
+
+func BenchmarkPi(b *testing.B) {
+	for i := 6; i <= 20; i += 2 {
+		b.Run(strconv.Itoa(1<<i), func(b *testing.B) {
+			for b.Loop() {
+				Pi(1 << i)
+			}
+		})
+	}
+}
+
+func BenchmarkE(b *testing.B) {
+	for i := 6; i <= 20; i += 2 {
+		b.Run(strconv.Itoa(1<<i), func(b *testing.B) {
+			for b.Loop() {
+				E(1 << i)
+			}
+		})
+	}
+}
+
+func BenchmarkPhi(b *testing.B) {
+	for i := 6; i <= 20; i += 2 {
+		b.Run(strconv.Itoa(1<<i), func(b *testing.B) {
+			for b.Loop() {
+				Phi(1 << i)
+			}
+		})
 	}
 }
