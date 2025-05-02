@@ -50,7 +50,7 @@ The following table summarizes which conversions are supported (✅ means suppor
 
 ### Simplified function composition
 
-Most aritchmetic functions in the package automatically perform type conversions (see the previous section), so it e.g. possible to pass a `big.Rat` or `int` to function that in math/big only accepts a `big.Float` as input.
+Most aritchmetic functions in the package automatically perform type conversions (see the previous section), so it is e.g. possible to pass a `big.Rat` or `int` to functions that in `math/big` only accept a `big.Float` as input.
 
 Furthermore, all functions (apart from the `Set*` functions) allocate a new result and never modify their inputs, so accidental shadowing of variables is not possible.
 
