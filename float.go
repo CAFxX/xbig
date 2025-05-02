@@ -17,7 +17,7 @@ type floatNums interface {
 
 // NewFloat creates a new [big.Float] from the given float value.
 // The input is not modified.
-// If the input is a string, it is parsed using [*math/big.Float).SetString(x.]
+// If the input is a string, it is parsed using [big.Float.SetString](x, 0).
 // The function returns the new [big.Float] on success. On failure, it returns nil.
 // The precision of the new [big.Float] depends on the input value precision.
 func NewFloat[T floatNums](x T) *big.Float {
@@ -26,7 +26,7 @@ func NewFloat[T floatNums](x T) *big.Float {
 
 // SetFloat sets the value of the given [big.Float] to the given float value.
 // The input float value is not modified.
-// If the input is a string, it is parsed using [*math/big.Float).SetString(x.]
+// If the input is a string, it is parsed using [big.Float.SetString](x, 0).
 // If the [big.Int] is nil, a new one is created. Otherwise, the existing one is modified.
 // The function returns the modified [big.Float] on success.
 // On failure, it returns nil and the state of the big.Float is undefined.

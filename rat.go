@@ -14,7 +14,7 @@ type ratNums interface {
 
 // NewRat creates a new [big.Rat] from the given rational value.
 // The input is not modified.
-// If the input is a string, it is parsed using [*math/big.Rat.SetString(x)].
+// If the input is a string, it is parsed using [big.Rat.SetString].
 // The function returns the new [big.Rat] on success. On failure, it returns nil.
 func NewRat[T ratNums](x T) *big.Rat {
 	return SetRat(new(big.Rat), x)
@@ -22,7 +22,7 @@ func NewRat[T ratNums](x T) *big.Rat {
 
 // SetRat sets the value of the given [big.Rat] to the given rational value.
 // The input rational value is not modified.
-// If the input is a string, it is parsed using [*math/big.Rat.SetString(x)].
+// If the input is a string, it is parsed using [big.Rat.SetString].
 // If the input is a float, and it can not be converted to a rational [big.Rat], it returns nil.
 // The function returns the modified [big.Rat] on success.
 // On failure, it returns nil and the state of the [big.Rat] is undefined.
