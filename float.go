@@ -17,7 +17,7 @@ type floatNums interface {
 
 // NewFloat creates a new [big.Float] from the given float value.
 // The input is not modified.
-// If the input is a string, it is parsed using math/big.(*Float).SetString(x).
+// If the input is a string, it is parsed using [*math/big.Float).SetString(x.]
 // The function returns the new [big.Float] on success. On failure, it returns nil.
 // The precision of the new [big.Float] depends on the input value precision.
 func NewFloat[T floatNums](x T) *big.Float {
@@ -26,7 +26,7 @@ func NewFloat[T floatNums](x T) *big.Float {
 
 // SetFloat sets the value of the given [big.Float] to the given float value.
 // The input float value is not modified.
-// If the input is a string, it is parsed using math/big.(*Float).SetString(x).
+// If the input is a string, it is parsed using [*math/big.Float).SetString(x.]
 // If the [big.Int] is nil, a new one is created. Otherwise, the existing one is modified.
 // The function returns the modified [big.Float] on success.
 // On failure, it returns nil and the state of the big.Float is undefined.
@@ -83,7 +83,7 @@ func toFloat[T floatNums](x T) *big.Float {
 // AddFloat adds two float values and returns the result as a new [big.Float].
 // The input values are not modified.
 //
-// See [math/big.(*Float).Add] for more details.
+// See [big.Float.Add] for more details.
 func AddFloat[T, U floatNums](x T, y U) *big.Float {
 	return new(big.Float).Add(toFloat(x), toFloat(y))
 }
@@ -91,7 +91,7 @@ func AddFloat[T, U floatNums](x T, y U) *big.Float {
 // SubFloat subtracts two float values and returns the result as a new [big.Float].
 // The input values are not modified.
 //
-// See [math/big.(*Float).Sub] for more details.
+// See [big.Float.Sub] for more details.
 func SubFloat[T, U floatNums](x T, y U) *big.Float {
 	return new(big.Float).Sub(toFloat(x), toFloat(y))
 }
@@ -99,7 +99,7 @@ func SubFloat[T, U floatNums](x T, y U) *big.Float {
 // MulFloat multiplies two float values and returns the result as a new [big.Float].
 // The input values are not modified.
 //
-// See [math/big.(*Float).Mul] for more details.
+// See [big.Float.Mul] for more details.
 func MulFloat[T, U floatNums](x T, y U) *big.Float {
 	return new(big.Float).Mul(toFloat(x), toFloat(y))
 }
@@ -107,7 +107,7 @@ func MulFloat[T, U floatNums](x T, y U) *big.Float {
 // QuoFloat divides two float values and returns the result as a new [big.Float].
 // The input values are not modified.
 //
-// See [math/big.(*Float).Quo] for more details.
+// See [big.Float.Quo] for more details.
 func QuoFloat[T, U floatNums](x T, y U) *big.Float {
 	return new(big.Float).Quo(toFloat(x), toFloat(y))
 }
@@ -115,7 +115,7 @@ func QuoFloat[T, U floatNums](x T, y U) *big.Float {
 // AbsFloat returns the absolute value of the given float value as a new [big.Float].
 // The input value is not modified.
 //
-// See [math/big.(*Float).Abs] for more details.
+// See [big.Float.Abs] for more details.
 func AbsFloat[T floatNums](x T) *big.Float {
 	return new(big.Float).Abs(toFloat(x))
 }
@@ -123,7 +123,7 @@ func AbsFloat[T floatNums](x T) *big.Float {
 // NegFloat returns the negation of the given float value as a new [big.Float].
 // The input value is not modified.
 //
-// See [math/big.(*Float).Neg] for more details.
+// See [big.Float.Neg] for more details.
 func NegFloat[T floatNums](x T) *big.Float {
 	return new(big.Float).Neg(toFloat(x))
 }
@@ -136,7 +136,7 @@ func NegFloat[T floatNums](x T) *big.Float {
 //
 // The input values are not modified.
 //
-// See [math/big.(*Float).Cmp] for more details.
+// See [big.Float.Cmp] for more details.
 func CmpFloat[T, U floatNums](x T, y U) int {
 	return toFloat(x).Cmp(toFloat(y))
 }
@@ -144,7 +144,7 @@ func CmpFloat[T, U floatNums](x T, y U) int {
 // SqrtFloat returns the square root of the given float value as a new [big.Float].
 // The input value is not modified.
 //
-// See [math/big.(*Float).Sqrt] for more details.
+// See [big.Float.Sqrt] for more details.
 func SqrtFloat[T floatNums](x T) *big.Float {
 	return new(big.Float).Sqrt(toFloat(x))
 }
@@ -152,7 +152,7 @@ func SqrtFloat[T floatNums](x T) *big.Float {
 // SetModeFloat sets the rounding mode of the given float value and returns the result as a new [big.Float].
 // The input value is not modified.
 //
-// See [math/big.(*Float).SetMode] for more details.
+// See [big.Float.SetMode] for more details.
 func SetModeFloat[T floatNums](x T, mode big.RoundingMode) *big.Float {
 	return NewFloat(x).SetMode(mode)
 }
@@ -160,7 +160,7 @@ func SetModeFloat[T floatNums](x T, mode big.RoundingMode) *big.Float {
 // SetPrecFloat sets the precision of the given float value and returns the result as a new [big.Float].
 // The input value is not modified.
 //
-// See [math/big.(*Float).SetPrec] for more details.
+// See [big.Float.SetPrec] for more details.
 func SetPrecFloat[T floatNums](x T, prec uint) *big.Float {
 	return NewFloat(x).SetPrec(prec)
 }
@@ -168,7 +168,7 @@ func SetPrecFloat[T floatNums](x T, prec uint) *big.Float {
 // SetMantExpFloat sets the mantissa and exponent of the given float value and returns the result as a new [big.Float].
 // The input value is not modified.
 //
-// See [math/big.(*Float).SetMantExp] for more details.
+// See [big.Float.SetMantExp] for more details.
 func SetMantExpFloat[T floatNums](x T, exp int) *big.Float {
 	return new(big.Float).SetMantExp(toFloat(x), exp)
 }

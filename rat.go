@@ -14,7 +14,7 @@ type ratNums interface {
 
 // NewRat creates a new [big.Rat] from the given rational value.
 // The input is not modified.
-// If the input is a string, it is parsed using [math/big.(*Rat).SetString(x)].
+// If the input is a string, it is parsed using [*math/big.Rat.SetString(x)].
 // The function returns the new [big.Rat] on success. On failure, it returns nil.
 func NewRat[T ratNums](x T) *big.Rat {
 	return SetRat(new(big.Rat), x)
@@ -22,8 +22,8 @@ func NewRat[T ratNums](x T) *big.Rat {
 
 // SetRat sets the value of the given [big.Rat] to the given rational value.
 // The input rational value is not modified.
-// If the input is a string, it is parsed using [math/big.(*Rat).SetString(x)].
-// If the input is a float, and it can not be converted to a rational [math/big.Rat], it returns nil.
+// If the input is a string, it is parsed using [*math/big.Rat.SetString(x)].
+// If the input is a float, and it can not be converted to a rational [big.Rat], it returns nil.
 // The function returns the modified [big.Rat] on success.
 // On failure, it returns nil and the state of the [big.Rat] is undefined.
 func SetRat[T ratNums](f *big.Rat, x T) *big.Rat {
@@ -151,7 +151,7 @@ func isIntLikeToInt[T ratNums](x T) *big.Int {
 // AddRat adds two rational values and returns the result as a new [big.Rat].
 // The input values are not modified.
 //
-// See [math/big.(*Rat).Add] for more details.
+// See [big.Rat.Add] for more details.
 func AddRat[T, U ratNums](x T, y U) *big.Rat {
 	return new(big.Rat).Add(toRat(x), toRat(y))
 }
@@ -159,7 +159,7 @@ func AddRat[T, U ratNums](x T, y U) *big.Rat {
 // SubRat subtracts two rational values and returns the result as a new [big.Rat].
 // The input values are not modified.
 //
-// See [math/big.(*Rat).Sub] for more details.
+// See [big.Rat.Sub] for more details.
 func SubRat[T, U ratNums](x T, y U) *big.Rat {
 	return new(big.Rat).Sub(toRat(x), toRat(y))
 }
@@ -167,7 +167,7 @@ func SubRat[T, U ratNums](x T, y U) *big.Rat {
 // MulRat multiplies two rational values and returns the result as a new [big.Rat].
 // The input values are not modified.
 //
-// See [math/big.(*Rat).Mul] for more details.
+// See [big.Rat.Mul] for more details.
 func MulRat[T, U ratNums](x T, y U) *big.Rat {
 	return new(big.Rat).Mul(toRat(x), toRat(y))
 }
@@ -175,7 +175,7 @@ func MulRat[T, U ratNums](x T, y U) *big.Rat {
 // QuoRat divides two rational values and returns the result as a new [big.Rat].
 // The input values are not modified.
 //
-// See [math/big.(*Rat).Quo] for more details.
+// See [big.Rat.Quo] for more details.
 func QuoRat[T, U ratNums](x T, y U) *big.Rat {
 	return new(big.Rat).Quo(toRat(x), toRat(y))
 }
@@ -183,7 +183,7 @@ func QuoRat[T, U ratNums](x T, y U) *big.Rat {
 // AbsRat returns the absolute value of the given rational value as a new [big.Rat].
 // The input value is not modified.
 //
-// See [math/big.(*Rat).Abs] for more details.
+// See [big.Rat.Abs] for more details.
 func AbsRat[T ratNums](x T) *big.Rat {
 	return new(big.Rat).Abs(toRat(x))
 }
@@ -191,7 +191,7 @@ func AbsRat[T ratNums](x T) *big.Rat {
 // NegRat returns the negation of the given rational value as a new [big.Rat].
 // The input value is not modified.
 //
-// See [math/big.(*Rat).Neg] for more details.
+// See [big.Rat.Neg] for more details.
 func NegRat[T ratNums](x T) *big.Rat {
 	return new(big.Rat).Neg(toRat(x))
 }
@@ -199,7 +199,7 @@ func NegRat[T ratNums](x T) *big.Rat {
 // InvRat returns the inverse of the given rational value as a new [big.Rat].
 // The input value is not modified.
 //
-// See [math/big.(*Rat).Inv] for more details.
+// See [big.Rat.Inv] for more details.
 func InvRat[T ratNums](x T) *big.Rat {
 	return new(big.Rat).Inv(toRat(x))
 }
@@ -212,7 +212,7 @@ func InvRat[T ratNums](x T) *big.Rat {
 //
 // The input values are not modified.
 //
-// See [math/big.(*Rat).Cmp] for more details.
+// See [big.Rat.Cmp] for more details.
 func CmpRat[T, U ratNums](x T, y U) int {
 	return toRat(x).Cmp(toRat(y))
 }
