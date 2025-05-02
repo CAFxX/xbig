@@ -102,7 +102,7 @@ func Pi(prec uint) *big.Float {
 	return pi.SetPrec(prec)
 }
 
-// Phi is the golden ratio constant with the given precision (in bits).
+// Phi is the golden ratio φ constant with the given precision (in bits).
 func Phi(prec uint) *big.Float {
 	r := big.NewFloat(5).SetPrec(prec + 4)
 	r.Sqrt(r)
