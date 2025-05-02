@@ -319,3 +319,17 @@ func FMAInt[T, U, V intNums](x T, y U, z V) *big.Int {
 	rx.Mul(rx, toInt(y))
 	return rx.Add(rx, toInt(z))
 }
+
+// FactInt computes the factorial of x and returns the result as a new [big.Int].
+// The input is unmodified.
+func FactInt[T intNums](x T) *big.Int {
+	i := toInt(x)
+	if i.IsInt64() {
+		h := i.Int64()
+		if h < 1 {
+			return nil
+		}
+		return new(big.Int).MulRange(1, h)
+	}
+	return nil // FIXME: handle large x
+}
