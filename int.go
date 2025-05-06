@@ -16,7 +16,8 @@ type intNums interface {
 
 // NewInt creates a new [big.Int] from the given integer value.
 // The input is not modified.
-// The function the new [big.Int] on success. On failure, it returns nil.
+// The function returns the new [big.Int] on success.
+// On failure (e.g. due to a malformed string) it returns nil.
 func NewInt[T intNums](x T) *big.Int {
 	return SetInt(new(big.Int), x)
 }
